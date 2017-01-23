@@ -34,7 +34,7 @@ if ($importAvatar) {
 	while ($data = $result->fetch_object()) { 
 
 		echo  $data->pp_member_id ." ";
-	    $nsb->query("UPDATE core_members SET pp_main_photo = '$data->avatar_location', pp_thumb_photo = '$data->avatar_location' WHERE member_id = $data->pp_member_id");
+	    $nsb->query("UPDATE core_members SET pp_main_photo = '$data->avatar_location', pp_thumb_photo = '$data->avatar_location', `pp_photo_type` = 'custom' WHERE member_id = $data->pp_member_id");
 
 	}
 
@@ -123,7 +123,8 @@ if ($importUsers) {
 			`signature`,
 			`member_title`,	
 			`member_posts`,	
-			`member_last_post`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			`member_last_post`,
+			`allow_admin_mails`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, 1)");
 	    if ( false===$st ) {
 	      die('prepare() failed: ' . htmlspecialchars($nsb->error));
 	    }
